@@ -44,14 +44,14 @@ const display = document.querySelector('#display');
 
 const displayValue = document.createElement('div');
 displayValue.classList.add('displayValue');
-displayValue.textContent = 'Enter a Number';
-
-
-let displayTextArray = [];
+displayValue.textContent = '';
 
 display.appendChild(displayValue);
 /* end of display section */
 
+let displayStorage = [];
+
+/* button section */
 
 const buttons = document.querySelectorAll('button');
 
@@ -64,29 +64,29 @@ buttons.forEach((button) => {
       || button.id === '5'|| button.id === '6'|| button.id === '7'|| button.id === '8'
       || button.id === '9'|| button.id === '0'|| button.id === '.'
       ) {
-        displayTextArray.push(button.id)
-        changeDisplay(displayTextArray)
+        let currentInput = button.id;
+
+        changeDisplay(currentInput)
       } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * ' 
       || button.id === ' / ') {
         leftNumber()
-        displayTextArray.push(button.id)
-        changeDisplay(displayTextArray)
+        let currentInput = button.id;
+        changeDisplay(currentInput)
       }
   
   });
 });
 
 /*array text function */
-function changeDisplay(array) {
-let newArray = array.join('')
-console.log(newArray);
-return displayValue.textContent = newArray;
+function changeDisplay(input) {
+    let oldnumber = displayValue.textContent;
+let string = `${oldnumber}${input}`;
+displayStorage.push(displayValue.textContent);
+return displayValue.textContent = string;
 }
 /* */
 
 function leftNumber() {
-    let leftNumberArray = [];
-    leftNumberArray.push(displayValue.textContent)
-    console.log(leftNumberArray, 'left number');
+displayStorage.push(displayValue.textContent);
+console.log(displayStorage, 'displayStorage')
 }
-console.log('7' + 6)
