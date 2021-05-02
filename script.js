@@ -24,6 +24,7 @@ function operate(numberOne, numberTwo, operator) {
     }
 }
 
+/* keep this just for now */
 function calculate(a, b) {
     let o = prompt('enter operator', '+')
     let answer = operate(a, b, o);

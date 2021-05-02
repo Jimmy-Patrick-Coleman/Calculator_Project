@@ -1,0 +1,22 @@
+#Calculater{
+    border: 1px solid red;
+}
+#display {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid pink;
+}
+
+#Button-Container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+#number-Buttons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+#function-Buttons {
+    display: grid;
+    grid-template-columns: auto;
+}
