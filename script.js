@@ -66,6 +66,11 @@ buttons.forEach((button) => {
       ) {
         displayTextArray.push(button.id)
         changeDisplay(displayTextArray)
+      } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * ' 
+      || button.id === ' / ') {
+        leftNumber()
+        displayTextArray.push(button.id)
+        changeDisplay(displayTextArray)
       }
   
   });
@@ -74,6 +79,14 @@ buttons.forEach((button) => {
 /*array text function */
 function changeDisplay(array) {
 let newArray = array.join('')
+console.log(newArray);
 return displayValue.textContent = newArray;
 }
 /* */
+
+function leftNumber() {
+    let leftNumberArray = [];
+    leftNumberArray.push(displayValue.textContent)
+    console.log(leftNumberArray, 'left number');
+}
+console.log('7' + 6)
