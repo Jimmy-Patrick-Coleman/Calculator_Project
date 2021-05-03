@@ -24,18 +24,16 @@ function operate(numberOne, numberTwo, operator) {
     }
 }
 
-/* 
-
-keep this just for now 
-
-function calculate(a, b) {
-    let o = prompt('enter operator', '+')
-    let answer = operate(a, b, o);
-return answer
+function isOdd(num) { if (num === 0) {
+    return true
 }
-console.log(calculate(8, 5))
-
-*/
+    else if (num % 2 === 0) {
+    return true
+}
+else if (num % 2!== 0) {
+    return false
+}
+}
 
 /*starting use dom after this will save now */
 
@@ -48,45 +46,54 @@ displayValue.textContent = '';
 
 display.appendChild(displayValue);
 /* end of display section */
-
-let displayStorage = [];
-
+let leftNumberStorage = [];
+let rightNumberStorage = [];
+let leftNumber = [];
+let rightNumber = [];
+let operateArray = [];
+let operateArrayStorage = []; // do not use
+let displayArrayStorage = [];
+let displayArray = [];
 /* button section */
 
 const buttons = document.querySelectorAll('button');
 
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
-
-  // and for each one we add a 'click' listener
-  button.addEventListener('click', () => {
-      if (button.id === '1' || button.id === '2' || button.id === '3' || button.id === '4'
-      || button.id === '5'|| button.id === '6'|| button.id === '7'|| button.id === '8'
-      || button.id === '9'|| button.id === '0'|| button.id === '.'
-      ) {
+    button.addEventListener('click', () => {
+        if (button.id === '1' || button.id === '2' || button.id === '3' || button.id === '4'
+        || button.id === '5' || button.id === '6' || button.id === '7' || button.id === '8'
+        || button.id === '9' || button.id === '0' || button.id === '.'
+    ) {
+        let oNum = operateArray.length;
+        let goOrNah = isOdd(oNum);
+        console.log()
+        if (goOrNah === true) {
+            let currentInput = button.id;
+            changeDisplay(currentInput, leftNumber, leftNumberStorage, rightNumber, operateArray);
+    } else if (goOrNah === false) {
         let currentInput = button.id;
-
-        changeDisplay(currentInput)
-      } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * ' 
-      || button.id === ' / ') {
-        leftNumber()
+        changeDisplay(currentInput, rightNumber, rightNumberStorage, operateArray, leftNumber);
+}
+    } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * '
+    || button.id === ' / ') {
         let currentInput = button.id;
-        changeDisplay(currentInput)
-      }
-  
-  });
+        changeDisplay(currentInput, operateArray, operateArrayStorage, leftNumber, rightNumber);
+    }
+    }
+    
+    );
 });
 
-/*array text function */
-function changeDisplay(input) {
-    let oldnumber = displayValue.textContent;
-let string = `${oldnumber}${input}`;
-displayStorage.push(displayValue.textContent);
-return displayValue.textContent = string;
-}
-/* */
+    // and for each one we add a 'click' listener
+    
 
-function leftNumber() {
-displayStorage.push(displayValue.textContent);
-console.log(displayStorage, 'displayStorage')
-}
+    function changeDisplay(inputUseID, array, arrayStorage, otherArrayOne, otherArrayTwo) {
+        arrayStorage.push(inputUseID);
+        array = arrayStorage.join('')
+        let displayArray = [];
+        displayArray.push(array);
+        displayArray.push(otherArrayOne);
+        displayArray.push(otherArrayTwo);
+        return displayValue.textContent = displayArray;
+    }
