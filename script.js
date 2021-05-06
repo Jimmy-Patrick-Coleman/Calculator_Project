@@ -13,19 +13,22 @@ function divide(a, b) {
 
 
 function operate(numberOne, numberTwo, operator) {
-    if (operator === '+') {
+    console.log(numberOne, 'numberOne');
+    console.log(numberTwo, 'numberTwo');
+    console.log(numberOne, 'operator');
+    if (operator === ' + ') {
         return add(numberOne, numberTwo)
-    } else if (operator === 'subtract') {
+    } else if (operator === ' - ') {
         return subtract(numberOne, numberTwo)
-    } else if (operator === 'multiply') {
+    } else if (operator === ' * ') {
         return multiply(numberOne, numberTwo)
-    } else if (operator === 'divide') {
+    } else if (operator === ' / ') {
         return divide(numberOne, numberTwo)
     }
 }
 
 function isOdd(num) { if (num === 0) {
-    return false
+    return true
 }
     else if (num % 2 === 0) {
     return true
@@ -57,6 +60,12 @@ displayValueRight.classList.add('displayValueRight');
 displayValueRight.textContent = '';
 
 display.appendChild(displayValueRight);
+
+const displayAnswer = document.createElement('div');
+displayAnswer.classList.add('displayAnswer');
+displayAnswer.textContent = '';
+
+display.appendChild(displayAnswer);
 /* end of display section */
 let leftNumberStorage = [];
 let rightNumberStorage = [];
@@ -64,8 +73,49 @@ let leftNumber = [];
 let rightNumber = [];
 let operateArray = [];
 let operateArrayStorage = []; // do not use
-let displayArrayStorage = [];
 let displayArray = [];
+
+
+    // and for each one we add a 'click' listener
+    
+function changeLeftDisplay(number) {
+   leftNumberStorage.push(number)
+   console.log(leftNumberStorage);
+   leftNumber = [];
+   leftNumber.push(leftNumberStorage.join('')) 
+   console.log(leftNumber, ' left  number');
+   return displayValueLeft.textContent = leftNumber;
+}
+function changeRightDisplay(number) {
+    rightNumberStorage.push(number)
+    console.log(rightNumberStorage);
+    rightNumber = [];
+    rightNumber.push(rightNumberStorage.join('')) 
+    console.log(rightNumber, ' r ight  number');
+    return displayValueRight.textContent = rightNumber;
+ }
+ function changeMiddleDisplay(number) {
+    operateArrayStorage.push(number)
+    console.log(operateArrayStorage);
+    operateArray = [];
+    operateArray.push(operateArrayStorage.join('')) 
+    console.log(operateArray , 'o a');
+    return displayValueMiddle.textContent = operateArray;
+ }
+ function resetArrays(array) {
+     let oldLength = [...array];
+ for (let i = 0; i <= oldLength.length; i++) {
+     array.unshift();
+ }if (array.length === 0) {
+return console.log(array, 'reset')
+ }
+ }
+
+
+ function returnValueOfArray(array) {
+    return Number(array)
+ }
+
 /* button section */
 
 const buttons = document.querySelectorAll('button');
@@ -81,45 +131,50 @@ buttons.forEach((button) => {
         let goOrNah = isOdd(oNum);
         if (goOrNah === true) {
             let currentInput = button.id;
+            displayArray.push('lengthisnowmore')
             changeLeftDisplay(currentInput);
 
     } else if (goOrNah === false) {
         let currentInput = button.id;
+        displayArray.push('lengthisnowmore')
         changeRightDisplay(currentInput);
 }
     } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * '
     || button.id === ' / ') {
         let currentInput = button.id;
-        changeRightDisplay(currentInput);
+        displayArray.push('lengthisnowmore')
+        changeMiddleDisplay(currentInput)
+    } else if (button.id === ' = ') {
+        let numOne = leftNumber.pop();
+        console.log(numOne, 'num 1');
+        let operateArg = operateArray.pop();
+        console.log(operateArg , 'oparg');
+        let numTwo = rightNumber.pop();
+        console.log(numTwo, 'num2');
+
+        let ln = returnValueOfArray(numOne, 'left number as number')
+        let rn = returnValueOfArray(numTwo, 'left number as number')
+
+       let answer =  operate(ln, rn, operateArg);
+       displayAnswer.textContent = answer;
+       
+       console.log(resetArrays(leftNumberStorage))
+       console.log(resetArrays(rightNumberStorage))
+       console.log(resetArrays(leftNumber));
+       console.log( resetArrays(rightNumber))
+       console.log(resetArrays(operateArray))
+       console.log(resetArrays(operateArrayStorage))
+       console.log(resetArrays(displayArray))
+       
+      
+       
+       
+       
+       displayValueLeft.textContent = leftNumber;
+       displayValueMiddle.textContent = leftNumber;
+       displayValueRight.textContent = leftNumber;
     }
-    }
+    } 
     
     );
 });
-
-    // and for each one we add a 'click' listener
-    
-function changeLeftDisplay(number) {
-   leftNumberStorage.push(number)
-   console.log(leftNumberStorage);
-   leftNumber = [];
-   leftNumber.push(leftNumberStorage.join('')) 
-   console.log(leftNumber);
-   return displayValueLeft.textContent = leftNumber;
-}
-function changeRightDisplay(number) {
-    rightNumberStorage.push(number)
-    console.log(rightNumberStorage);
-    rightNumber = [];
-    rightNumber.push(rightNumberStorage.join('')) 
-    console.log(rightNumber);
-    return displayValueRight.textContent = rightNumber;
- }
- function changeMiddleDisplay(number) {
-    operateArrayStorage.push(number)
-    console.log(operateArrayStorage);
-    operateArray = [];
-    operateArray.push(operateArrayStorage.join('')) 
-    console.log(operateArray);
-    return displayValueMiddle.textContent = operateArray;
- }
