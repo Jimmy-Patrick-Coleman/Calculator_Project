@@ -25,7 +25,7 @@ function operate(numberOne, numberTwo, operator) {
 }
 
 function isOdd(num) { if (num === 0) {
-    return true
+    return false
 }
     else if (num % 2 === 0) {
     return true
@@ -40,11 +40,23 @@ else if (num % 2!== 0) {
 /* display scetion */
 const display = document.querySelector('#display');
 
-const displayValue = document.createElement('div');
-displayValue.classList.add('displayValue');
-displayValue.textContent = '';
+const displayValueLeft = document.createElement('div');
+displayValueLeft.classList.add('displayValueLeft');
+displayValueLeft.textContent = '';
 
-display.appendChild(displayValue);
+display.appendChild(displayValueLeft);
+
+const displayValueMiddle = document.createElement('div');
+displayValueMiddle.classList.add('displayValueMiddle');
+displayValueMiddle.textContent = '';
+
+display.appendChild(displayValueMiddle);
+
+const displayValueRight = document.createElement('div');
+displayValueRight.classList.add('displayValueRight');
+displayValueRight.textContent = '';
+
+display.appendChild(displayValueRight);
 /* end of display section */
 let leftNumberStorage = [];
 let rightNumberStorage = [];
@@ -67,18 +79,18 @@ buttons.forEach((button) => {
     ) {
         let oNum = operateArray.length;
         let goOrNah = isOdd(oNum);
-        console.log()
         if (goOrNah === true) {
             let currentInput = button.id;
-            changeDisplay(currentInput, leftNumber, leftNumberStorage, rightNumber, operateArray);
+            changeLeftDisplay(currentInput);
+
     } else if (goOrNah === false) {
         let currentInput = button.id;
-        changeDisplay(currentInput, rightNumber, rightNumberStorage, operateArray, leftNumber);
+        changeRightDisplay(currentInput);
 }
     } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * '
     || button.id === ' / ') {
         let currentInput = button.id;
-        changeDisplay(currentInput, operateArray, operateArrayStorage, leftNumber, rightNumber);
+        changeRightDisplay(currentInput);
     }
     }
     
@@ -87,13 +99,27 @@ buttons.forEach((button) => {
 
     // and for each one we add a 'click' listener
     
-
-    function changeDisplay(inputUseID, array, arrayStorage, otherArrayOne, otherArrayTwo) {
-        arrayStorage.push(inputUseID);
-        array = arrayStorage.join('')
-        let displayArray = [];
-        displayArray.push(array);
-        displayArray.push(otherArrayOne);
-        displayArray.push(otherArrayTwo);
-        return displayValue.textContent = displayArray;
-    }
+function changeLeftDisplay(number) {
+   leftNumberStorage.push(number)
+   console.log(leftNumberStorage);
+   leftNumber = [];
+   leftNumber.push(leftNumberStorage.join('')) 
+   console.log(leftNumber);
+   return displayValueLeft.textContent = leftNumber;
+}
+function changeRightDisplay(number) {
+    rightNumberStorage.push(number)
+    console.log(rightNumberStorage);
+    rightNumber = [];
+    rightNumber.push(rightNumberStorage.join('')) 
+    console.log(rightNumber);
+    return displayValueRight.textContent = rightNumber;
+ }
+ function changeMiddleDisplay(number) {
+    operateArrayStorage.push(number)
+    console.log(operateArrayStorage);
+    operateArray = [];
+    operateArray.push(operateArrayStorage.join('')) 
+    console.log(operateArray);
+    return displayValueMiddle.textContent = operateArray;
+ }
