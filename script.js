@@ -161,7 +161,7 @@ buttons.forEach((button) => {
        console.log(resetArrays(leftNumberStorage))
        console.log(resetArrays(rightNumberStorage))
        console.log(resetArrays(leftNumber));
-       console.log( resetArrays(rightNumber))
+       console.log(resetArrays(rightNumber))
        console.log(resetArrays(operateArray))
        console.log(resetArrays(operateArrayStorage))
        console.log(resetArrays(displayArray))
