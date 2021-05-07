@@ -158,21 +158,30 @@ buttons.forEach((button) => {
        let answer =  operate(ln, rn, operateArg);
        displayAnswer.textContent = answer;
        
-       console.log(resetArrays(leftNumberStorage))
-       console.log(resetArrays(rightNumberStorage))
-       console.log(resetArrays(leftNumber));
-       console.log(resetArrays(rightNumber))
-       console.log(resetArrays(operateArray))
-       console.log(resetArrays(operateArrayStorage))
-       console.log(resetArrays(displayArray))
-       
-      
-       
-       
+    leftNumberStorage = [];
+ rightNumberStorage = [];
+ leftNumber = [];
+ rightNumber = [];
+operateArray = [];
+ operateArrayStorage = []; // do not use
+ displayArray = [];
        
        displayValueLeft.textContent = leftNumber;
-       displayValueMiddle.textContent = leftNumber;
-       displayValueRight.textContent = leftNumber;
+       displayValueMiddle.textContent = operateArray;
+       displayValueRight.textContent = rightNumber;
+    } else if (button.id === 'clear') {
+      leftNumberStorage = [];
+       rightNumberStorage = [];
+      leftNumber = [];
+    rightNumber = [];
+    operateArray = [];
+    operateArrayStorage = []; // do not use
+        displayArray = [];
+        
+        displayValueLeft.textContent = leftNumber;
+        displayValueMiddle.textContent = operateArray;
+        displayValueRight.textContent = rightNumber;
+        displayAnswer.textContent = '';
     }
     } 
     
