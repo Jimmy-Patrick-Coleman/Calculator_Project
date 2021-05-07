@@ -8,7 +8,11 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    return a / b;
+    if (b < 0) {
+        return 'A portal opens and your socks are stolen by a crazy irish wizard covered in spoons.'
+    } else {
+        return a / b;
+    }
 }
 
 
@@ -141,9 +145,37 @@ buttons.forEach((button) => {
 }
     } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * '
     || button.id === ' / ') {
-        let currentInput = button.id;
-        displayArray.push('lengthisnowmore')
-        changeMiddleDisplay(currentInput)
+        let oNum = operateArray.length;
+        let goOrNah = isOdd(oNum);
+        if (goOrNah === false) {
+            let numOne = leftNumber.pop();
+            console.log(numOne, 'num 1');
+            let operateArg = operateArray.pop();
+            console.log(operateArg , 'oparg');
+            let numTwo = rightNumber.pop();
+            console.log(numTwo, 'num2');
+            let ln = returnValueOfArray(numOne, 'left number as number')
+            let rn = returnValueOfArray(numTwo, 'left number as number')
+           let answer =  operate(ln, rn, operateArg);
+           displayValueLeft.textContent = answer;
+           leftNumberStorage = [];
+           rightNumberStorage = [];
+           leftNumber = [];
+           rightNumber = [];
+           operateArray = [];
+           operateArrayStorage = [];
+           displayArray = [];
+           leftNumber.push(answer);
+           displayValueMiddle.textContent = operateArray;
+           displayValueRight.textContent = rightNumber;
+           let currentInput = button.id;
+           displayArray.push('lengthisnowmore')
+           changeMiddleDisplay(currentInput)
+        } else {
+            let currentInput = button.id;
+            displayArray.push('lengthisnowmore')
+            changeMiddleDisplay(currentInput)
+        }
     } else if (button.id === ' = ') {
         let numOne = leftNumber.pop();
         console.log(numOne, 'num 1');
@@ -158,15 +190,15 @@ buttons.forEach((button) => {
        let answer =  operate(ln, rn, operateArg);
        displayValueLeft.textContent = answer;
        
-     leftNumberStorage = [];
-     rightNumberStorage = [];
-     leftNumber = [];
-     rightNumber = [];
-     operateArray = [];
-     operateArrayStorage = [];
-     displayArray = [];
+       leftNumberStorage = [];
+       rightNumberStorage = [];
+       leftNumber = [];
+       rightNumber = [];
+       operateArray = [];
+       operateArrayStorage = [];
+       displayArray = [];
       
-     leftNumber.push(answer);
+       leftNumber.push(answer);
 
        displayValueMiddle.textContent = operateArray;
        displayValueRight.textContent = rightNumber;
