@@ -156,32 +156,33 @@ buttons.forEach((button) => {
         let rn = returnValueOfArray(numTwo, 'left number as number')
 
        let answer =  operate(ln, rn, operateArg);
-       displayAnswer.textContent = answer;
+       displayValueLeft.textContent = answer;
        
-    leftNumberStorage = [];
- rightNumberStorage = [];
- leftNumber = [];
- rightNumber = [];
-operateArray = [];
- operateArrayStorage = []; // do not use
- displayArray = [];
-       
-       displayValueLeft.textContent = leftNumber;
+     leftNumberStorage = [];
+     rightNumberStorage = [];
+     leftNumber = [];
+     rightNumber = [];
+     operateArray = [];
+     operateArrayStorage = [];
+     displayArray = [];
+      
+     leftNumber.push(answer);
+
        displayValueMiddle.textContent = operateArray;
        displayValueRight.textContent = rightNumber;
     } else if (button.id === 'clear') {
-      leftNumberStorage = [];
+
+       leftNumberStorage = [];
        rightNumberStorage = [];
-      leftNumber = [];
-    rightNumber = [];
-    operateArray = [];
-    operateArrayStorage = []; // do not use
-        displayArray = [];
+       leftNumber = [];
+       rightNumber = [];
+       operateArray = [];
+       operateArrayStorage = [];
+       displayArray = [];
         
         displayValueLeft.textContent = leftNumber;
         displayValueMiddle.textContent = operateArray;
         displayValueRight.textContent = rightNumber;
-        displayAnswer.textContent = '';
     }
     } 
     
