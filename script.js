@@ -8,8 +8,8 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    if (b < 0) {
-        return 'A portal opens and your socks are stolen by a crazy irish wizard covered in spoons.'
+    if (b <= 0) {
+        return displayValueLeft.textContent = 'A portal opens and your socks are stolen by a crazy irish wizard covered in spoons.'
     } else {
         return a / b;
     }
@@ -49,27 +49,23 @@ const display = document.querySelector('#display');
 
 const displayValueLeft = document.createElement('div');
 displayValueLeft.classList.add('displayValueLeft');
-displayValueLeft.textContent = '';
+displayValueLeft.textContent = 'Enter a number';
 
 display.appendChild(displayValueLeft);
 
 const displayValueMiddle = document.createElement('div');
 displayValueMiddle.classList.add('displayValueMiddle');
-displayValueMiddle.textContent = '';
+displayValueMiddle.textContent = ' ';
 
 display.appendChild(displayValueMiddle);
 
 const displayValueRight = document.createElement('div');
 displayValueRight.classList.add('displayValueRight');
-displayValueRight.textContent = '';
+displayValueRight.textContent = ' ';
 
 display.appendChild(displayValueRight);
 
-const displayAnswer = document.createElement('div');
-displayAnswer.classList.add('displayAnswer');
-displayAnswer.textContent = '';
 
-display.appendChild(displayAnswer);
 /* end of display section */
 let leftNumberStorage = [];
 let rightNumberStorage = [];
@@ -177,31 +173,41 @@ buttons.forEach((button) => {
             changeMiddleDisplay(currentInput)
         }
     } else if (button.id === ' = ') {
-        let numOne = leftNumber.pop();
-        console.log(numOne, 'num 1');
-        let operateArg = operateArray.pop();
-        console.log(operateArg , 'oparg');
-        let numTwo = rightNumber.pop();
-        console.log(numTwo, 'num2');
 
-        let ln = returnValueOfArray(numOne, 'left number as number')
-        let rn = returnValueOfArray(numTwo, 'left number as number')
+if (rightNumber.length <= 0) {
+    displayValueLeft.textContent = 'You just broke it. It is broke. ohh nooo.'
+    displayValueMiddle.textContent = '';
+    displayValueRight.textContent = '';
+} else {
+    let numOne = leftNumber.pop();
+    console.log(numOne, 'num 1');
+    let operateArg = operateArray.pop();
+    console.log(operateArg , 'oparg');
+    let numTwo = rightNumber.pop();
+    console.log(numTwo, 'num2');
 
-       let answer =  operate(ln, rn, operateArg);
-       displayValueLeft.textContent = answer;
-       
-       leftNumberStorage = [];
-       rightNumberStorage = [];
-       leftNumber = [];
-       rightNumber = [];
-       operateArray = [];
-       operateArrayStorage = [];
-       displayArray = [];
-      
-       leftNumber.push(answer);
+    let ln = returnValueOfArray(numOne, 'left number as number')
+    let rn = returnValueOfArray(numTwo, 'left number as number')
 
-       displayValueMiddle.textContent = operateArray;
-       displayValueRight.textContent = rightNumber;
+   let answer =  operate(ln, rn, operateArg);
+   displayValueLeft.textContent = answer;
+   
+   leftNumberStorage = [];
+   rightNumberStorage = [];
+   leftNumber = [];
+   rightNumber = [];
+   operateArray = [];
+   operateArrayStorage = [];
+   displayArray = [];
+  
+   leftNumber.push(answer);
+
+   displayValueMiddle.textContent = operateArray;
+   displayValueRight.textContent = rightNumber;
+}
+
+
+        
     } else if (button.id === 'clear') {
 
        leftNumberStorage = [];
