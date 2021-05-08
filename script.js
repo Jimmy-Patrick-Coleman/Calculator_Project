@@ -67,6 +67,7 @@ display.appendChild(displayValueRight);
 
 
 /* end of display section */
+let dotTrackerArray = [];
 let leftNumberStorage = [];
 let rightNumberStorage = [];
 let leftNumber = [];
@@ -127,18 +128,48 @@ buttons.forEach((button) => {
         || button.id === '5' || button.id === '6' || button.id === '7' || button.id === '8'
         || button.id === '9' || button.id === '0' || button.id === '.'
     ) {
-        let oNum = operateArray.length;
-        let goOrNah = isOdd(oNum);
-        if (goOrNah === true) {
+       
+          if (button.id !== '.') {
+            let oNum = operateArray.length;
+            let goOrNah = isOdd(oNum);
+            if (goOrNah === true) {
+                let currentInput = button.id;
+                displayArray.push('lengthisnowmore')
+                changeLeftDisplay(currentInput);
+    
+        } else if (goOrNah === false) {
             let currentInput = button.id;
             displayArray.push('lengthisnowmore')
-            changeLeftDisplay(currentInput);
+            changeRightDisplay(currentInput);
+    }
+          } else  if (button.id === '.') {
+            dotTrackerArray.push(1)
+        if (dotTrackerArray.length <= 1) {
+            let oNum = operateArray.length;
+                let goOrNah = isOdd(oNum);
+                if (goOrNah === true) {
+                    let currentInput = button.id;
+                    displayArray.push('lengthisnowmore')
+                    changeLeftDisplay(currentInput);
+        
+            } else if (goOrNah === false) {
+                let currentInput = button.id;
+                displayArray.push('lengthisnowmore')
+                changeRightDisplay(currentInput);
+        }
+        }
 
-    } else if (goOrNah === false) {
-        let currentInput = button.id;
-        displayArray.push('lengthisnowmore')
-        changeRightDisplay(currentInput);
-}
+
+
+
+       
+        }
+       
+
+       
+    
+
+       
     } else if (button.id === ' + ' || button.id === ' - ' || button.id === ' * '
     || button.id === ' / ') {
         let oNum = operateArray.length;
@@ -209,18 +240,7 @@ if (rightNumber.length <= 0) {
 
         
     } else if (button.id === 'clear') {
-
-       leftNumberStorage = [];
-       rightNumberStorage = [];
-       leftNumber = [];
-       rightNumber = [];
-       operateArray = [];
-       operateArrayStorage = [];
-       displayArray = [];
-        
-        displayValueLeft.textContent = leftNumber;
-        displayValueMiddle.textContent = operateArray;
-        displayValueRight.textContent = rightNumber;
+        location.reload();
     }
     } 
     
