@@ -42,9 +42,14 @@
     display: grid;
     grid-template-columns: auto auto auto;
 }
-#function-Buttons {
+#Operator-Buttons {
     display: grid;
     grid-template-columns: auto;
+    width: 100px;
+}
+#Function-Buttons {
+    display: grid;
+    grid-template-columns: auto auto;
     width: 100px;
 }
 .number-button{
@@ -52,9 +57,17 @@
     background-color: orange;
     border: 1px solid black;
 }
-.function-button {
+.Operator-button {
     padding: 5vh;
     background-color: dodgerblue;
+    border: 1px solid black;
+}
+.Function-button {
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+    padding-left: 9.3vh;
+    padding-right: 9.2vh;
+    background-color: white;
     border: 1px solid black;
 }
 .equals-button {

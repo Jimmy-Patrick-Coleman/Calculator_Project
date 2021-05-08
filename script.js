@@ -158,11 +158,6 @@ buttons.forEach((button) => {
                 changeRightDisplay(currentInput);
         }
         }
-
-
-
-
-       
         }
        
 
@@ -235,14 +230,41 @@ if (rightNumber.length <= 0) {
 
    displayValueMiddle.textContent = operateArray;
    displayValueRight.textContent = rightNumber;
-}
-
-
-        
+}  
     } else if (button.id === 'clear') {
         location.reload();
+    }
+    else if (button.id === 'Backspace') {
+        backSpaceFunction();
     }
     } 
     
     );
 });
+
+
+
+function backSpaceFunction() {
+    let oNum = operateArray.length;
+    let goOrNah = isOdd(oNum);
+
+    if (goOrNah === true) {
+        let removedNumber = leftNumberStorage.pop();
+        console.log(leftNumberStorage);
+        leftNumber = [];
+        leftNumber.push(leftNumberStorage.join('')) 
+    console.log(leftNumber, ' leftNumber');
+    return displayValueLeft.textContent = leftNumber;
+    } else if (goOrNah === false && rightNumberStorage.length >= 1) {
+        let removedNumber = rightNumberStorage.pop();
+        console.log(rightNumberStorage);
+    rightNumber = [];
+    rightNumber.push(rightNumberStorage.join('')) 
+    console.log(rightNumber, ' right  number');
+    return displayValueRight.textContent = rightNumber;
+    } else if (goOrNah === false && rightNumberStorage.length <= 0) {
+        operateArray = [];
+        operateArrayStorage = [];
+        displayValueMiddle.textContent = operateArray;
+    }
+}
